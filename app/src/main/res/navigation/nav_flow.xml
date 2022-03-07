@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_flow"
+    app:startDestination="@id/mapFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.scope.application.screens.list.ListFragment">
+
+        <action
+            android:id="@+id/action_list_to_map_fragment"
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popExitAnim="@anim/slide_down"
+            ></action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.scope.application.screens.map.MapFragment"></fragment>
+</navigation>
