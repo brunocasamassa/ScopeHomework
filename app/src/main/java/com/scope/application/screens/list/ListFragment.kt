@@ -8,6 +8,10 @@ import com.scope.application.screens.BaseFragment
 
 class ListFragment: BaseFragment() {
 
+    companion object{
+        const val USER_ID_SELECTED = "_user_id_selected"
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

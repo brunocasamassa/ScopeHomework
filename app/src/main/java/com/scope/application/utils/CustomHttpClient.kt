@@ -5,6 +5,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.google.gson.GsonBuilder
+
+import com.google.gson.Gson
+
+
+
 
 class CustomHttpClient() {
 
@@ -17,10 +23,14 @@ class CustomHttpClient() {
 
         setClient()
 
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         return Retrofit.Builder()
             .baseUrl(com.scope.application.BuildConfig.BASE_URL)
             .client(httpClient.build())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(serviceClass)
     }

@@ -1,21 +1,20 @@
 package com.scope.application.domain.models
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
-
-import kotlinx.serialization.SerialName
 
 
 @Serializable
 data class GeoVehicles(
-    @SerialName("data")
+    @SerializedName("data")
     val geoAuto: List<GeoAuto>
 )
 
 @Serializable
 data class GeoAuto(
-    @SerialName("lat")
+    @SerializedName("lat")
     val lat: Double,
-    @SerialName("lon")
+    @SerializedName("lon")
     val lon: Double,
-    @SerialName("vehicleid")
+    @SerializedName("vehicleid")
     val vehicleid: Int
 )

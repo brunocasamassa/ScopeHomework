@@ -1,6 +1,7 @@
 package com.scope.application.di
 
 import com.scope.application.remote.ApplicationApi
+import com.scope.application.remote.ApplicationRepository
 import com.scope.application.remote.ApplicationUseCase
 import com.scope.application.remote.ApplicationUseCaseImpl
 import com.scope.application.utils.CustomHttpClient
@@ -13,8 +14,9 @@ import org.koin.dsl.module
 object ApplicationModule {
     private val modules = module {
 
-        factory { get<CustomHttpClient>().create(ApplicationApi::class.java) }
         factory { CustomHttpClient() }
+        factory { get<CustomHttpClient>().create(ApplicationApi::class.java) }
+        factory { ApplicationRepository(get()) }
         factory<ApplicationUseCase> { ApplicationUseCaseImpl(get()) }
         viewModel { ApplicationViewModel(get()) }
     }

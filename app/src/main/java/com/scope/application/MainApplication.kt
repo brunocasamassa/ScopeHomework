@@ -14,7 +14,6 @@ class MainApplication : Application(){
             androidContext(this@MainApplication)
             androidLogger()
             ApplicationModule.loadModules()
-
         }
     }
 
