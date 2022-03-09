@@ -26,6 +26,7 @@ import com.scope.application.screens.ViewModelCommands.OnGeoVehiclesRequested
 import com.scope.application.screens.ViewModelCommands.OnDirectionsRequested
 import com.scope.application.screens.list.ListFragment.Companion.USER_ID_SELECTED
 import com.scope.application.screens.map.customviews.CarSelectedBottomDialog
+import com.scope.application.screens.map.customviews.DialogCarView
 import com.scope.application.utils.CustomCountdownTimer
 import com.scope.application.utils.invokePermissioned
 import com.scope.application.utils.toDpInt
@@ -93,24 +94,47 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                 }
 
                 is OnDirectionsRequested -> {
-                    when(response.polylineOptions!=null){
-                        true -> googleMap.addPolyline(response.polylineOptions)
-                        else -> Toast.makeText(requireContext(),context?.getString(R.string.no_results_found),Toast.LENGTH_LONG).show()
+                    when (response.polylineOptions != null) {
+                        true -> {
+                            with(googleMap) {
+                                clear()
+                                addMarker(  MarkerOptions()
+                                    .icon(response.carPointClicked.icon)
+                                    .position(LatLng(response.carPointClicked.latitude, response.carPointClicked.longitude))
+                                    .title("${response.carPointClicked.vehicleId}"))
+
+                                addPolyline(response.polylineOptions) }
+                        }
+
+
+                        else -> Toast.makeText(
+                            requireContext(),
+                            context?.getString(R.string.no_results_found),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
-
-                    CarSelectedBottomDialog(response.carPointClicked).show(
-                        childFragmentManager,
-                        "car_selected_tag"
-                    )
+                    prepareBottomSheetDialog(response.carPointClicked)
 
                 }
 
                 is OnError -> {
-                    Handler().postDelayed({viewModel.getVehiclesGeo(userId)}, 500)
+                    Handler(Looper.getMainLooper()).postDelayed({ viewModel.getVehiclesGeo(userId) }, 700)
                 }
             }
         }
+    }
+
+    private fun prepareBottomSheetDialog(carPointClicked: CarPointVO) {
+        with(CarSelectedBottomDialog(requireContext(), carPointClicked)) {
+
+            val carView = DialogCarView(requireContext(), carPointClicked)
+            carView.binding.buttonClose.setOnClickListener { this.dismiss() }
+
+            setContentView(carView)
+            show()
+        }
+
     }
 
     @SuppressLint("MissingPermission")
@@ -120,6 +144,11 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
         with(googleMap) {
             clear()
+
+            requireActivity().invokePermissioned(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                100
+            ) { isMyLocationEnabled = true }
 
             carPoints.forEach {
                 val vehiclePosition = LatLng(it.latitude, it.longitude)
@@ -150,7 +179,8 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                                     )
                                 )
 
-                        }}
+                            }
+                        }
 
                     }
 

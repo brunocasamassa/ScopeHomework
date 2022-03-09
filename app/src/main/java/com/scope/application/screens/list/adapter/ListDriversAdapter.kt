@@ -1,13 +1,18 @@
 package com.scope.application.screens.list.adapter
 
 import android.content.Context
+import android.os.Build
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
+import com.scope.application.R
 import com.scope.application.domain.models.Driver
 import com.scope.application.screens.list.adapter.ListDriversAdapter.ItemViewHolder
 
-
-class ListDriversAdapter(val context: Context?) :
+@RequiresApi(Build.VERSION_CODES.M)
+class ListDriversAdapter(val context: Context) :
     RecyclerView.Adapter<ItemViewHolder>() {
 
     var listOfDrivers: List<Driver> = emptyList()
@@ -43,8 +48,10 @@ class ListDriversAdapter(val context: Context?) :
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val driver = listOfDrivers[position]
+        driver.owner?.let { holder.bind(driver) }
 
-        if(driver.owner != null) holder.bind(driver)
+        if (position == itemCount - 1) holder.itemView.findViewById<MaterialCardView>(R.id.baseCardProductView)
+            .setCardBackgroundColor(context.getColor(R.color.red))
 
     }
 

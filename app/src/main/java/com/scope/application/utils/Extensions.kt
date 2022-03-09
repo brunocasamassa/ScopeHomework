@@ -1,5 +1,6 @@
 package com.scope.application.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
@@ -12,11 +13,13 @@ import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.model.LatLng
@@ -55,7 +58,6 @@ fun Int.toDpInt(): Int {
 }
 
 
-
 @RequiresApi(Build.VERSION_CODES.M)
 tailrec fun Activity.invokePermissioned(
     permission: String,
@@ -69,7 +71,7 @@ tailrec fun Activity.invokePermissioned(
 
     } else {
         requestPermissions(arrayOf(permission), requestCode)
-        return Handler().postDelayed({invokePermissioned(permission, requestCode, callGranted)}, 500)
+        return Handler(Looper.getMainLooper()).postDelayed({invokePermissioned(permission, requestCode, callGranted)}, 500)
 
     }
 }

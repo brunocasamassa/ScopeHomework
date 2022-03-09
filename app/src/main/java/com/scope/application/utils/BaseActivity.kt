@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
@@ -21,7 +22,6 @@ class BaseActivity : AppCompatActivity() {
 
         setContentView(binding.root)
     }
-
 
     override fun onBackPressed() {
         binding.navHostFragment.findNavController()?.let { it.popBackStack() }

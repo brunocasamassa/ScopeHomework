@@ -10,6 +10,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/timerLabel"
+            app:layout_constraintEnd_toEndOf="@id/timerLabel"
+            tools:text="30"
+            android:elevation="8dp"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/timerTextView"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="@dimen/margin_12dp"
+            android:elevation="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Until refresh"
+            android:textSize="16dp"
+            android:textColor="@android:color/holo_green_light"
+            app:layout_constraintTop_toBottomOf="@id/timerTextView"
+            android:id="@+id/timerLabel"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatTextView>
+
     <fragment
         android:id="@+id/map_fragment"
         class="com.google.android.gms.maps.SupportMapFragment"
@@ -17,26 +43,5 @@
         android:layout_height="match_parent"></fragment>
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/timerLabel"
-            app:layout_constraintEnd_toEndOf="@id/timerLabel"
-            tools:text="30"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="32dp"
-            app:layout_constraintBottom_toTopOf="@id/timerLabel"
-            android:id="@+id/timerTextView"
-            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatTextView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_margin="@dimen/margin_12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Until refresh"
-            android:textSize="24dp"
-            android:textColor="@android:color/holo_green_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/timerLabel"
-            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatTextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

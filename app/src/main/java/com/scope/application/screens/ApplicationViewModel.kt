@@ -88,8 +88,7 @@ class ApplicationViewModel(
                         )
                     }
                 }
-                is SafeResponse.GenericError -> {
-                    applicationLiveData.value =
+                is SafeResponse.GenericError -> { applicationLiveData.value =
                         ViewModelCommands.OnError(response.errorMessage?.getOrSafe())
                 }
                 is SafeResponse.NetworkError -> {

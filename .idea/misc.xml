@@ -6,10 +6,12 @@
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/drawable-v24/rounded_no_border.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/drawable/ic_car.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/drawable/ic_close.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/drawable/shape_custom_background_splash.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/activity_splash.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/dialog_bottom_sheet_car_selected.xml" value="0.22" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/fragment_list.xml" value="0.24427083333333333" />
-        <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/fragment_map.xml" value="0.33" />
+        <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/fragment_map.xml" value="0.22" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/view_horizontal_list_cars.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/view_item_driver.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/bruno/AndroidStudioProjects/ScopeHomework/app/src/main/res/layout/view_item_list_car.xml" value="0.22" />

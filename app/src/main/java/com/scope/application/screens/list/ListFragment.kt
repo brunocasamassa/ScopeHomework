@@ -1,10 +1,12 @@
 package com.scope.application.screens.list
 
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ import com.scope.application.screens.list.adapter.ListDriversAdapter
 import com.scope.application.screens.list.adapter.OnItemClickListener
 
 
+@RequiresApi(Build.VERSION_CODES.M)
 class ListFragment : BaseFragment() ,OnItemClickListener{
 
     companion object {
@@ -27,7 +30,7 @@ class ListFragment : BaseFragment() ,OnItemClickListener{
 
     lateinit var binding: FragmentListBinding
 
-    val listDriversAdapter by lazy { ListDriversAdapter(context) }
+    val listDriversAdapter by lazy { ListDriversAdapter(requireContext()) }
 
 
     override fun onCreateView(

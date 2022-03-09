@@ -13,22 +13,6 @@ open class BaseFragment : Fragment() {
 
     val viewModel by viewModel<ApplicationViewModel>()
 
-    lateinit var pointSelected: CarPointVO
-
     lateinit var fusedLocationClient : FusedLocationProviderClient
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    val locationPermissionRequest = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        when {
-            permissions.getOrDefault(android.Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
-
-            }
-            permissions.getOrDefault(android.Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-            } else -> {
-            // No location access granted.
-        }
-        }
-    }
 }
