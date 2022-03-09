@@ -1,16 +1,10 @@
-package com.scope.application.utils
+package com.scope.application.http
 
-import android.app.Application
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import com.google.gson.GsonBuilder
-
-import com.google.gson.Gson
-
-
-
 
 class CustomHttpClient() {
 
@@ -40,6 +34,7 @@ class CustomHttpClient() {
         httpClient = OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(AuthInterceptor())
 
     }
 

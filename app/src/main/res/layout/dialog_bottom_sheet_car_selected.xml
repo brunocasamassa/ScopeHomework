@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:elevation="@dimen/margin_16sp"
+    android:background="@drawable/rounded_no_border"
+    app:cardElevation="@dimen/margin_16sp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_16sp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/buttonClose"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/margin_16sp"
+            android:background="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.AppCompatImageView>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/carPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8dp"
+            android:minHeight="@dimen/margin_140dp"
+            android:src="@drawable/ic_car"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonClose"></androidx.appcompat.widget.AppCompatImageView>
+
+
+        <!--labels-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vehicleNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16sp"
+            android:text="@string/name_vehicle"
+            android:textSize="@dimen/margin_16sp"
+            app:layout_constraintStart_toStartOf="@id/carPhoto"
+            app:layout_constraintTop_toBottomOf="@id/carPhoto"></androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vehicleAddressLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16sp"
+            android:text="@string/address"
+            android:textSize="@dimen/margin_16sp"
+            app:layout_constraintStart_toStartOf="@id/vehicleNameLabel"
+            app:layout_constraintTop_toBottomOf="@id/vehicleNameLabel"></androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vehicleColorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16sp"
+            android:text="@string/color"
+            android:textSize="@dimen/margin_16sp"
+            app:layout_constraintStart_toStartOf="@id/vehicleAddressLabel"
+            app:layout_constraintTop_toBottomOf="@id/vehicleAddress"></androidx.appcompat.widget.AppCompatTextView>
+
+
+        <!--values-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vehicleName"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/vehicleNameLabel"
+            app:layout_constraintTop_toTopOf="@id/vehicleNameLabel"
+            tools:text="Corolla"></androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vehicleAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin_16sp"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicleAddressLabel"
+            tools:text="125, random street"></androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vehicleColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12dp"
+            android:background="@drawable/ic_car"
+            android:textSize="@dimen/margin_16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/vehicleColorLabel"
+            app:layout_constraintStart_toEndOf="@id/vehicleColorLabel"
+            app:layout_constraintBottom_toBottomOf="@id/vehicleColorLabel"></androidx.appcompat.widget.AppCompatImageView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/white"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicleColorLabel"
+            android:layout_height="@dimen/margin_140dp"></View>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

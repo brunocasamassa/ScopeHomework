@@ -20,5 +20,4 @@ class CustomCountdownTimer(millisInFuture: Long, countDownInterval: Long = 1000)
     }
 
 
-
 }

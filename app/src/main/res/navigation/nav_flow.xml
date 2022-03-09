@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_flow"
-    app:startDestination="@id/mapFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
         android:id="@+id/listFragment"
+        tools:layout="@layout/fragment_list"
         android:name="com.scope.application.screens.list.ListFragment">
 
         <action
@@ -20,5 +22,6 @@
 
     <fragment
         android:id="@+id/mapFragment"
+        tools:layout="@layout/fragment_map"
         android:name="com.scope.application.screens.map.MapFragment"></fragment>
 </navigation>

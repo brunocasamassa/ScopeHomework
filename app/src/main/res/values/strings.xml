@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Scope Homework</string>
+    <string name="color">Color:  </string>
+    <string name="address">Currently address:   </string>
+    <string name="name_vehicle">Vehicle Name:   </string>
 </resources>

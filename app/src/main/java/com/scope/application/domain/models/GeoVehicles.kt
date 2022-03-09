@@ -16,5 +16,6 @@ data class GeoAuto(
     @SerializedName("lon")
     val lon: Double,
     @SerializedName("vehicleid")
-    val vehicleid: Int
+    val vehicleid: Int,
+    var address:String = ""
 )
