@@ -101,7 +101,7 @@ class ApplicationViewModel(
         }
     }
 
-    fun getPointDirections(carPointClicked: CarPointVO, userLocation:LatLng) {
+    fun getPointDirections(carPointClicked: CarPointVO, userLocation: LatLng) {
 
         viewModelScope.launch(dispatcher) {
             when (val response = safeRequest {
@@ -113,10 +113,20 @@ class ApplicationViewModel(
                 )
             }) {
                 is SafeResponse.Success -> {
-                    response.value.routes.firstOrNull()?.legs?.firstOrNull()?.steps?.let {
-                    applicationLiveData.value = ViewModelCommands.OnDirectionsRequested(
-                        GeoContent.createPolylineOptions(it), carPointClicked
-                    )}
+                    when (response.value.status) {
+                        ZERO_RESULTS -> {
+                            applicationLiveData.value = ViewModelCommands.OnDirectionsRequested(
+                                null, carPointClicked
+                            )
+                        }
+                        else -> {
+                            response.value.routes.firstOrNull()?.legs?.firstOrNull()?.steps?.let {
+                                applicationLiveData.value = ViewModelCommands.OnDirectionsRequested(
+                                    GeoContent.createPolylineOptions(it), carPointClicked
+                                )
+                            }
+                        }
+                    }
                 }
                 is SafeResponse.GenericError -> {
                     applicationLiveData.value =
@@ -154,6 +164,7 @@ class ApplicationViewModel(
     companion object {
         fun DRIVER_GEO_KEY(currentlyUserId: String) = "_driver_geo_key_$currentlyUserId"
         const val DRIVERS_LIST_KEY = "_drivers_list_key"
+        const val ZERO_RESULTS = "ZERO_RESULTS"
         const val CLEAN_CACHE_TIME: Long = 30000
     }
 }
@@ -162,7 +173,10 @@ sealed class ViewModelCommands {
     data class OnListOfDriversRequested(val drivers: List<Driver>?) : ViewModelCommands()
     data class OnGeoVehiclesRequested(val carPoints: List<CarPointVO>) : ViewModelCommands()
     data class OnError(val message: String) : ViewModelCommands()
-    data class OnDirectionsRequested(val polylineOptions: PolylineOptions, val carPointClicked: CarPointVO) : ViewModelCommands() {
+    data class OnDirectionsRequested(
+        val polylineOptions: PolylineOptions?,
+        val carPointClicked: CarPointVO
+    ) : ViewModelCommands() {
 
     }
 }

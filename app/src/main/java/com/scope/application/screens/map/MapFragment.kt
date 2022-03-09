@@ -7,6 +7,7 @@ import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.*
 import com.scope.application.R
 import com.scope.application.databinding.FragmentMapBinding
 import com.scope.application.domain.vo.CarPointVO
+import com.scope.application.screens.ApplicationViewModel.Companion.ZERO_RESULTS
 import com.scope.application.screens.BaseFragment
 import com.scope.application.screens.ViewModelCommands
 import com.scope.application.screens.ViewModelCommands.OnError
@@ -91,7 +93,11 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                 }
 
                 is OnDirectionsRequested -> {
-                    googleMap.addPolyline(response.polylineOptions)
+                    when(response.polylineOptions!=null){
+                        true -> googleMap.addPolyline(response.polylineOptions)
+                        else -> Toast.makeText(requireContext(),ZERO_RESULTS,Toast.LENGTH_LONG).show()
+                    }
+
 
                     CarSelectedBottomDialog(response.carPointClicked).show(
                         childFragmentManager,
