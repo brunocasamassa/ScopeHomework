@@ -109,6 +109,7 @@
             android:layout_width="match_parent"
             android:backgroundTint="@color/white"
             android:background="@color/white"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicleColorLabel"
             android:layout_height="@dimen/margin_140dp"></View>

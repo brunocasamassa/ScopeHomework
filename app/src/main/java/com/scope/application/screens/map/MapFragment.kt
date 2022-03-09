@@ -95,7 +95,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                 is OnDirectionsRequested -> {
                     when(response.polylineOptions!=null){
                         true -> googleMap.addPolyline(response.polylineOptions)
-                        else -> Toast.makeText(requireContext(),ZERO_RESULTS,Toast.LENGTH_LONG).show()
+                        else -> Toast.makeText(requireContext(),context?.getString(R.string.no_results_found),Toast.LENGTH_LONG).show()
                     }
 
 

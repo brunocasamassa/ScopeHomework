@@ -3,4 +3,5 @@
     <string name="color">Color:  </string>
     <string name="address">Currently address:   </string>
     <string name="name_vehicle">Vehicle Name:   </string>
+    <string name="no_results_found">There is no route to device</string>
 </resources>
