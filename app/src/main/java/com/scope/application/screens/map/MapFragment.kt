@@ -1,11 +1,13 @@
 package com.scope.application.screens.map
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,9 +25,10 @@ import com.scope.application.screens.ViewModelCommands.OnDirectionsRequested
 import com.scope.application.screens.list.ListFragment.Companion.USER_ID_SELECTED
 import com.scope.application.screens.map.customviews.CarSelectedBottomDialog
 import com.scope.application.utils.CustomCountdownTimer
+import com.scope.application.utils.invokePermissioned
 import com.scope.application.utils.toDpInt
 
-
+@RequiresApi(Build.VERSION_CODES.M)
 class MapFragment : BaseFragment(), OnMapReadyCallback {
 
 
@@ -98,19 +101,21 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                 }
 
                 is OnError -> {
-                    viewModel.getVehiclesGeo(userId)
+                    Handler().postDelayed({viewModel.getVehiclesGeo(userId)}, 500)
                 }
             }
         }
     }
 
+    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupMap(carPoints: List<CarPointVO>) {
         val bounds = LatLngBounds.builder()
 
         with(googleMap) {
             clear()
 
-             carPoints.forEach {
+            carPoints.forEach {
                 val vehiclePosition = LatLng(it.latitude, it.longitude)
                 this.addMarker(
                     MarkerOptions()
@@ -123,16 +128,25 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
             }
 
             setOnMarkerClickListener { marker ->
-                 carPoints.find {
-                     it.vehicleId == marker.title
-                }?.let {carPoint ->
+                carPoints.find {
+                    it.vehicleId == marker.title
+                }?.also { carPoint ->
+                    requireActivity().invokePermissioned(
+                        Manifest.permission.ACCESS_FINE_LOCATION, 100
+                    ) {
+                        fusedLocationClient.lastLocation.addOnSuccessListener {
+                            it?.let {
+                                viewModel.getPointDirections(
+                                    carPoint,
+                                    LatLng(
+                                        it.latitude,
+                                        it.longitude
+                                    )
+                                )
 
-                    pointSelected = carPoint
+                        }}
 
-                     locationPermissionRequest.launch(arrayOf(
-                         Manifest.permission.ACCESS_FINE_LOCATION,
-                         Manifest.permission.ACCESS_COARSE_LOCATION))
-
+                    }
 
                 }
                 true
@@ -164,6 +178,5 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
 
-
-    }
+}
 
