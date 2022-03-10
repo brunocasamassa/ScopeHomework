@@ -10,10 +10,10 @@ import com.orhanobut.hawk.Hawk
 import com.scope.application.domain.models.*
 import com.scope.application.domain.vo.CarPointVO
 import com.scope.application.remote.ApplicationUseCase
-import com.scope.application.utils.CustomCountdownTimer
+import com.scope.commons.CustomCountdownTimer
 import com.scope.application.http.SafeResponse
-import com.scope.application.utils.getOrSafe
 import com.scope.application.http.safeRequest
+import com.scope.commons.extensions.getOrSafe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
@@ -73,7 +73,7 @@ class ApplicationViewModel(
                         /*persisting geo and set countdown to clean persistence*/
                         Hawk.put(DRIVER_GEO_KEY(userId), it)
 
-                        with(CustomCountdownTimer(CLEAN_CACHE_TIME)) {
+                        with(com.scope.commons.CustomCountdownTimer(CLEAN_CACHE_TIME)) {
                             onFinishCallback = { Hawk.delete(DRIVER_GEO_KEY(userId)) }
                             start()
                         }

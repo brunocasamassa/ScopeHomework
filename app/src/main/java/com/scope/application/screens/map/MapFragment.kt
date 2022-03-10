@@ -2,7 +2,6 @@ package com.scope.application.screens.map
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
@@ -18,18 +17,15 @@ import com.google.android.gms.maps.model.*
 import com.scope.application.R
 import com.scope.application.databinding.FragmentMapBinding
 import com.scope.application.domain.vo.CarPointVO
-import com.scope.application.screens.ApplicationViewModel.Companion.ZERO_RESULTS
 import com.scope.application.screens.BaseFragment
-import com.scope.application.screens.ViewModelCommands
 import com.scope.application.screens.ViewModelCommands.OnError
 import com.scope.application.screens.ViewModelCommands.OnGeoVehiclesRequested
 import com.scope.application.screens.ViewModelCommands.OnDirectionsRequested
 import com.scope.application.screens.list.ListFragment.Companion.USER_ID_SELECTED
 import com.scope.application.screens.map.customviews.CarSelectedBottomDialog
 import com.scope.application.screens.map.customviews.DialogCarView
-import com.scope.application.utils.CustomCountdownTimer
-import com.scope.application.utils.invokePermissioned
-import com.scope.application.utils.toDpInt
+import com.scope.commons.extensions.invokePermissioned
+import com.scope.commons.extensions.toDpInt
 
 @RequiresApi(Build.VERSION_CODES.M)
 class MapFragment : BaseFragment(), OnMapReadyCallback {
@@ -201,7 +197,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     private fun startRefreshCountdown() {
-        with(CustomCountdownTimer(REQUEST_MILLIS)) {
+        with(com.scope.commons.CustomCountdownTimer(REQUEST_MILLIS)) {
             onTickCallback = {
                 binding.timerTextView.text = it
                 if (!this@MapFragment.isVisible) this.cancel()

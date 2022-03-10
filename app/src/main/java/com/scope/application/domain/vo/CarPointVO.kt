@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.scope.application.R
 import com.scope.application.domain.models.GeoAuto
 import com.scope.application.domain.models.Vehicle
-import com.scope.application.utils.BitmapHelper
+import com.scope.commons.BitmapHelper
 
 data class CarPointVO(
     val latitude: Double,
@@ -35,7 +35,7 @@ data class CarPointVO(
                 vehicle?.foto,
                 vehicle?.model,
                 vehicle?.make,
-                icon = BitmapHelper.vectorToBitmap(context, R.drawable.ic_car, Color.parseColor(vehicle?.color ?: "#000000"))
+                icon = com.scope.commons.BitmapHelper.vectorToBitmap(context, R.drawable.ic_car, Color.parseColor(vehicle?.color ?: "#000000"))
             )
         }
     }

@@ -1,7 +1,7 @@
 package com.scope.application.http
 
 import android.util.Log
-import com.scope.application.utils.getOrSafe
+import com.scope.commons.extensions.getOrSafe
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException

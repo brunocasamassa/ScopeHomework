@@ -1,4 +1,4 @@
-package com.scope.application.utils
+package com.scope.commons
 
 import android.content.Context
 import android.graphics.Bitmap
