@@ -29,7 +29,7 @@ class BaseActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        binding.navHostFragment.findNavController()?.let { it.popBackStack() }
+        binding.navHostFragment.findNavController().let { it.popBackStack() }
 
     }
 

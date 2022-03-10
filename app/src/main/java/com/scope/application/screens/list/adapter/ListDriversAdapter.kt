@@ -48,7 +48,7 @@ class ListDriversAdapter(val context: Context) :
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val driver = listOfDrivers[position]
-        driver.owner?.let { holder.bind(driver) }
+        driver.owner.let { holder.bind(driver) }
 
         if (position == itemCount - 1) holder.itemView.findViewById<MaterialCardView>(R.id.baseCardProductView)
             .setCardBackgroundColor(context.getColor(R.color.red))

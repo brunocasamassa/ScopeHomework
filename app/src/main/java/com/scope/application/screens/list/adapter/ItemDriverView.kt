@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.scope.application.R
 import com.scope.application.databinding.ViewItemDriverBinding
 import com.scope.application.domain.models.Vehicle
-import com.scope.application.utils.show
+import com.scope.commons.extensions.show
 import kotlin.properties.Delegates
 
 class ItemDriverView(context: Context, attributeSet: AttributeSet?) :

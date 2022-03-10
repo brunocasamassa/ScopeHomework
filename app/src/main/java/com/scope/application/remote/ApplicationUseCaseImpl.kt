@@ -25,12 +25,13 @@ class ApplicationUseCaseImpl(val repository: ApplicationRepository) : Applicatio
         return repository.requestPointsDirections("${originPoint.latitude},${originPoint.longitude}","${destinationPoint.latitude},${destinationPoint.longitude}")
     }
 
-    override suspend fun getVehiclesGeo(userId:String, context:Context): GeoVehicles {
+    override suspend fun getVehiclesGeo(userId:String, geocoder: Geocoder): GeoVehicles {
         var responseWithAddress = repository.requestDriverDetails(userId)
 
+
         responseWithAddress.geoAuto.forEach {
-            val geo = Geocoder(context, Locale.getDefault())
-            it.address = geo.getFromLocation(it.lat,it.lon,1)[0].getAddressLine(0)
+
+            it.address = geocoder.getFromLocation(it.lat,it.lon,1)[0].getAddressLine(0)
         }
 
         return responseWithAddress

@@ -6,12 +6,9 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import com.scope.application.R
-import com.scope.application.databinding.ViewHorizontalListCarsBinding
 import com.scope.application.databinding.ViewItemListCarBinding
 import com.scope.application.domain.models.Vehicle
-import com.scope.application.utils.show
+import com.scope.commons.extensions.show
 
 class CarView(context: Context, attributeSet: AttributeSet?, val vehicle: Vehicle?) :
     ConstraintLayout(context, attributeSet) {

@@ -1,6 +1,7 @@
 package com.scope.application.screens
 
 import android.content.Context
+import android.location.Geocoder
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class ApplicationViewModel(
@@ -42,7 +44,7 @@ class ApplicationViewModel(
                 }
                 is SafeResponse.NetworkError -> {
                     applicationLiveData.value =
-                        ViewModelCommands.OnError(response.errorMessage?.getOrSafe())
+                        ViewModelCommands.OnError(response.errorMessage.getOrSafe())
 
                 }
             }
@@ -65,10 +67,17 @@ class ApplicationViewModel(
         }
 
         viewModelScope.async(dispatcher) {
-            when (val response = safeRequest { usecase.getVehiclesGeo(userId, context) }) {
+            when (val response = safeRequest {
+                usecase.getVehiclesGeo(
+                    userId, Geocoder(
+                        context,
+                        Locale.getDefault()
+                    )
+                )
+            }) {
                 is SafeResponse.Success -> {
 
-                    response.value.geoAuto?.let {
+                    response.value.geoAuto.let {
 
                         /*persisting geo and set countdown to clean persistence*/
                         Hawk.put(DRIVER_GEO_KEY(userId), it)
@@ -88,12 +97,13 @@ class ApplicationViewModel(
                         )
                     }
                 }
-                is SafeResponse.GenericError -> { applicationLiveData.value =
-                        ViewModelCommands.OnError(response.errorMessage?.getOrSafe())
+                is SafeResponse.GenericError -> {
+                    applicationLiveData.value =
+                        ViewModelCommands.OnError(response.errorMessage.getOrSafe())
                 }
                 is SafeResponse.NetworkError -> {
                     applicationLiveData.value =
-                        ViewModelCommands.OnError(response.errorMessage?.getOrSafe())
+                        ViewModelCommands.OnError(response.errorMessage.getOrSafe())
                 }
 
             }
@@ -133,7 +143,7 @@ class ApplicationViewModel(
                 }
                 is SafeResponse.NetworkError -> {
                     applicationLiveData.value =
-                        ViewModelCommands.OnError(response.errorMessage?.getOrSafe())
+                        ViewModelCommands.OnError(response.errorMessage.getOrSafe())
 
                 }
             }
