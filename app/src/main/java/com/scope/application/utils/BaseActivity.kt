@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
+import com.scope.application.R
 import com.scope.application.databinding.ActivityMainBinding
 
 class BaseActivity : AppCompatActivity() {
@@ -21,12 +23,16 @@ class BaseActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
+
     }
 
     override fun onBackPressed() {
         binding.navHostFragment.findNavController()?.let { it.popBackStack() }
 
     }
+
 
 
 }

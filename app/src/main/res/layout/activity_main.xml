@@ -24,12 +24,9 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:alpha="0.5"
-                android:layout_marginStart="@dimen/margin_12dp"
-                app:navigationIcon="@drawable/ic_logo_super"
-                app:titleTextColor="@color/yellow"
-                android:title="Scope Homework"
+                android:alpha="0.2"
                 android:layout_width="match_parent"
+                app:navigationIcon="@mipmap/scope_base_logo"
                 android:layout_height="?actionBarSize"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways" />
